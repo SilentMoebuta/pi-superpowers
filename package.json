@@ -1,0 +1,22 @@
+{
+  "name": "pi-superpowers",
+  "version": "0.1.0",
+  "description": "Process-discipline skills bundle for pi (brainstorming, systematic debugging, TDD, plans, verification, worktrees, parallel agents). Inspired by Claude Code's superpowers plugin.",
+  "keywords": [
+    "pi-package",
+    "pi",
+    "skills",
+    "superpowers",
+    "agent-skills"
+  ],
+  "license": "MIT",
+  "author": "lvwubai",
+  "files": [
+    "skills",
+    "README.md",
+    "LICENSE"
+  ],
+  "pi": {
+    "skills": ["./skills"]
+  }
+}
