@@ -62,7 +62,7 @@ Select the appropriate agent type for each task. Each role has a precise tool al
 
 1. Read the implementation plan once. Extract ALL tasks with their full text and context.
 2. For each task, determine the best agent role using the table above.
-3. Create a TodoWrite with all tasks.
+3. Note all tasks with their assigned roles.
 4. Group tasks into **waves** by dependency:
    - **Wave 0:** Tasks with no dependencies → dispatch in parallel
    - **Wave 1:** Tasks that depend only on Wave 0 outputs → dispatch in parallel after Wave 0
@@ -187,7 +187,7 @@ You: I'm using Subagent-Driven Development to execute this plan.
 [Extract all 5 tasks with full text and context]
 [Assign roles: Tasks 1,2,3,5 → coder, Task 4 → researcher]
 [Group into waves: Wave 0 = {Task 1, Task 4}, Wave 1 = {Task 2, Task 3}, Wave 2 = {Task 5}]
-[Create TodoWrite with all tasks]
+[Note all tasks and their roles]
 
 --- Wave 0 ---
 [Dispatch Task 1: coder, Task 4: researcher — both run_in_background: true]
