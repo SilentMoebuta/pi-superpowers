@@ -71,7 +71,7 @@ When building or modifying anything, follow these phases in sequence:
 | 1. Requirements | `brainstorming` | Clarify intent, research existing solutions, sketch approaches, pick direction |
 | 2. Code Understanding | `exploring-codebase` | Existing project — codegraph for structure, grep/read for details |
 | 3. Workspace Setup | `using-git-worktrees` | Create isolated branch and worktree |
-| 4. Plan | `writing-plans` | Produce combined spec+plan document (architecture + implementation steps with roles/deps/waves) → **save to `docs/plans/`** |
+| 4. Plan | `writing-plans` | Produce combined spec+plan document (architecture + implementation steps with roles/deps/waves) → **save to `docs/superpowers/plans/`** |
 | | | 🛑 **HUMAN APPROVAL GATE** — do not proceed until user confirms the plan |
 | 5. Implementation | `subagent-driven-development` | Role-based subagents, parallel waves, two-stage review |
 | 6. Testing | `test-driven-development` | RED-GREEN-REFACTOR during implementation |
@@ -143,12 +143,12 @@ All workflow outputs are saved under `docs/` with a date-prefixed naming convent
 | Directory | Produced By | Contains | Human Approval Required? |
 |-----------|------------|----------|:--:|
 | `docs/research/` | brainstorming (researcher subagent) | Technology research, library comparisons, API surveys | No |
-| `docs/plans/` | writing-plans | Combined spec+plan: architecture, tech choices, implementation steps with role/deps/wave | Yes |
+| `docs/superpowers/plans/` | writing-plans | Combined spec+plan: architecture, tech choices, implementation steps with role/deps/wave | Yes |
 | `docs/reviews/` | subagent-driven-development (reviewer) | Structured code review reports | No |
 | `docs/specs/` | (optional, complex projects only) | Standalone design specs when plan would be too large | No |
 
 **Naming convention:** `YYYY-MM-DD-<topic>-<type>.md`
-Example: `docs/plans/2026-06-16-kdj-scanner-plan.md`
+Example: `docs/superpowers/plans/2026-06-16-kdj-scanner-plan.md`
 
 **Update vs create rule:**
 - **Same topic, same session iteration** → **update in place**. The latest version is the only truth.
