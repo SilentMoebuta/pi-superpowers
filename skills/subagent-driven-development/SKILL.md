@@ -70,24 +70,23 @@ Select the appropriate agent type for each task. Each role has a precise tool al
 
 ### Phase 2: Dispatch by Wave (Parallel Independent Tasks)
 
-For each wave, dispatch all tasks in parallel using the `subagent` tool:
+Dispatch each task in the wave using the `spawn_role` tool:
 
 ```
-subagent({
-  subagent_type: "<role>",       // coder, researcher, reviewer, debugger, etc.
-  prompt: "<full task text + context>",
-  description: "<short label>",
-  run_in_background: true,
-  max_turns: <appropriate limit>
+spawn_role({
+  role: "<role>",       // coder, researcher, reviewer, debugger, etc. (same names as subagent_type)
+  task: "<full task text + context>",
+  mode: "foreground"     // default; blocks until the role reports via report_role_result
 })
+// returns { status, result|error, agentId } directly — no get_subagent_result call needed
 ```
 
-**Parallel dispatch rules:**
-- Tasks in the SAME wave run concurrently (`run_in_background: true`)
+**Dispatch rules:**
+- `spawn_role` runs in the **foreground** by default and blocks until the role finishes, so tasks within a wave currently dispatch **sequentially** (one after another, collecting each result before the next)
 - Tasks that edit the SAME files must NOT be in the same wave
 - Wait for ALL agents in a wave to complete before starting the next wave
-- Use `get_subagent_result` to poll and collect outputs
-- Never dispatch multiple implementation subagents that touch the same files in parallel (conflicts)
+- Never dispatch multiple implementation subagents that touch the same files (conflicts)
+- True parallel/background dispatch (`mode: "background"`) is **Phase 5 future work** — not yet supported
 
 ### Phase 3: Two-Stage Review (Per Task)
 

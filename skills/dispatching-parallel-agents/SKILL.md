@@ -62,17 +62,19 @@ Group tasks into waves via topological sort of the dependency graph:
 - Wave N: Continue until all tasks assigned
 
 **Dispatch pattern (Wave 0, 3 independent tasks):**
-```
-# Dispatch all in parallel via background subagents
-subagent({ subagent_type: "researcher", prompt: "Search for...", description: "Research A", run_in_background: true })
-subagent({ subagent_type: "coder", prompt: "Implement...", description: "Code B", run_in_background: true })
-subagent({ subagent_type: "debugger", prompt: "Investigate...", description: "Debug C", run_in_background: true })
 
-# Wait for all to complete, then feed results forward
-get_subagent_result({ agent_id: "<id-1>", wait: true })
-get_subagent_result({ agent_id: "<id-2>", wait: true })
-get_subagent_result({ agent_id: "<id-3>", wait: true })
+Today `spawn_role` runs in the **foreground** and blocks until the role reports back via `report_role_result` (the result is returned directly, no separate polling call). So wave dispatch is currently **sequential** — dispatch one role, collect its result, then dispatch the next:
+
 ```
+# Dispatch sequentially (foreground blocks until each role reports back)
+r1 = spawn_role({ role: "researcher", task: "Search for...", mode: "foreground" })
+r2 = spawn_role({ role: "coder",     task: "Implement...", mode: "foreground" })
+r3 = spawn_role({ role: "debugger",  task: "Investigate...", mode: "foreground" })
+
+# Each spawn_role returns {status, result|error, agentId} directly — no get_subagent_result needed
+```
+
+**Future work (Phase 5):** true parallel/background dispatch. Once `spawn_role({..., mode: "background"})` is supported, dispatch all tasks in a wave up front and collect results afterward — restoring concurrent execution. Until then, sequential foreground dispatch still satisfies the wave contract (independent tasks, no shared state); you just lose wall-clock parallelism.
 
 **Cost/timing analysis:**
 - Wall-clock time = longest single task in the wave, NOT sum of all tasks

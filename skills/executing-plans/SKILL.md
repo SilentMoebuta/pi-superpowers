@@ -11,7 +11,7 @@ Load plan, review critically, execute all tasks, report when complete.
 
 **Announce at start:** "I'm using the executing-plans skill to implement this plan."
 
-**Note:** pi has built-in subagent support via the `@gotgenes/pi-subagents` package. If subagents are available, prefer `superpowers:subagent-driven-development` instead of this skill (it runs tasks in isolated sessions with role-based agents). This skill is the fallback for executing a plan in the current session without subagents.
+**Note:** pi has role-based subagent support via the pi-roles extension (`spawn_role` tool). If `spawn_role` is available, prefer `superpowers:subagent-driven-development` instead of this skill (it runs tasks in isolated sessions with role-based agents). This skill is the fallback for executing a plan in the current session without `spawn_role`.
 
 ## The Process
 
