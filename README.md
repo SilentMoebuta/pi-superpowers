@@ -33,8 +33,6 @@ pi install git:github.com/SilentMoebuta/pi-superpowers
 | `requesting-code-review` | Completing tasks / before merge. |
 | `receiving-code-review` | Processing review feedback. |
 | `finishing-a-development-branch` | Merge / PR / cleanup decision. |
-| `dag` | Decompose a task into a dependency DAG. |
-| `dag-run` | Execute a DAG manifest via subagents. |
 
 ### Command skills (17) — slash commands
 
