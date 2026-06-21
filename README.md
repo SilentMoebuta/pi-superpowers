@@ -1,6 +1,6 @@
 # pi-superpowers
 
-Process-discipline skills bundle for the [pi coding agent](https://github.com/earendil-works/pi-coding-agent). 35 skills that enforce a structured workflow: brainstorm → explore → plan → review-gate → TDD → verify → finish.
+Process-discipline skills bundle for the [pi coding agent](https://github.com/earendil-works/pi-coding-agent). 33 skills that enforce a structured workflow: brainstorm → explore → plan → review-gate → TDD → verify → finish.
 
 Inspired by Claude Code's superpowers plugin, adapted for pi's extension/skill model.
 
@@ -12,9 +12,9 @@ pi install git:github.com/SilentMoebuta/pi-superpowers
 
 ## What's included
 
-35 skills, in two categories:
+33 skills, in two categories:
 
-### Methodology skills (18) — how to do the work
+### Methodology skills (15) — how to do the work
 
 | Skill | When |
 |---|---|
