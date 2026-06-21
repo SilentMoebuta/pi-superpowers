@@ -54,6 +54,19 @@ After all tasks complete and verified:
 
 **Don't force through blockers** - stop and ask.
 
+## Red Flags — STOP
+
+| Thought | Reality |
+|---|---|
+| "The plan is clear, I'll start executing without reviewing it" | Un-reviewed plans have gaps + wrong dependencies. Review first. |
+| "This step is small, I'll batch it with the next" | Each step is a checkpoint for a reason. Batch defeats review. |
+| "The plan says verify, but it obviously works" | 'Obviously works' = didn't verify. Run the check. |
+| "I'm blocked, I'll guess and move on" | Blocked = stop + escalate. Guessing produces wrong code. |
+| "I'll skip the referenced skill, I know it" | Skills evolve. Load the current version. |
+| "Verifications pass, I'm done" | Did you run ALL the plan's checks, not just the easy ones? |
+
+**Any of these mean: stop, review the plan + your progress before continuing.**
+
 ## Remember
 - Review plan critically first
 - Follow plan steps exactly

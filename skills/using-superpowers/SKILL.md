@@ -54,6 +54,16 @@ If CLAUDE.md or AGENTS.md says "don't use TDD" and a skill says "always use TDD,
 
 In pi, skills auto-load based on description matching. You can `read` the SKILL.md file directly to load it, or use `/skill:name` to force-load a specific skill. Announce which skill you are loading and why.
 
+## Platform Neutrality
+
+Skills speak in **actions** ("dispatch a subagent", "read a file", "run the
+tests") — not in any one runtime's tool names. This keeps the same prose working
+across runtimes and stops the Claude-Code-ism drift this bundle already had to
+hand-fix twice. The concrete pi tool each action resolves to (core tools plus
+the pi-roles `spawn_role` / `dag_execute` / `dag_resume` / `report_role_result`
+surface) is pinned in [references/pi-tools.md](references/pi-tools.md). When pi's
+tools change, edit that one file — not every skill.
+
 ## Skill Types
 
 **Rigid** (TDD, debugging): Follow exactly. Do not adapt away discipline.

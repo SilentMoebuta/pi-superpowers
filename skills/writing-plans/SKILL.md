@@ -174,6 +174,13 @@ After writing the complete plan, look at the spec with fresh eyes and check the 
 
 If you find issues, fix them inline. No need to re-review — just fix and move on. If you find a spec requirement with no task, add the task.
 
+**Reviewer subagent (fresh-eyes pass):** after your inline self-review, dispatch
+a read-only `reviewer` subagent against the plan — it catches type drift and
+missing spec coverage you stopped seeing three edits ago. Use the prompt in
+[plan-document-reviewer-prompt.md](plan-document-reviewer-prompt.md). Fix any
+"Issues Found" with `edit`; re-dispatch only for structural issues (missing
+tasks, DAG conflicts), not wording. Two agreeing passes is consensus.
+
 ## Execution Handoff
 
 After saving the plan, offer execution choice:
@@ -197,3 +204,15 @@ After saving the plan, offer execution choice:
 **If Inline Execution chosen:**
 - **REQUIRED SUB-SKILL:** Use superpowers:executing-plans
 - Batch execution with checkpoints for review
+
+## Red Flags — STOP
+
+| Thought | Reality |
+|---|---|
+| "The plan is in my head, I'll write it as I go" | No written plan = no plan. Write it first. |
+| "This step is obvious, I'll skip detailing it" | Vague steps become rabbit holes. Detail enough to act. |
+| "I'll fill in the role/dependency later" | A plan with TBDs is not a plan. Resolve before execution. |
+| "The plan is long enough, skip self-review" | Self-review catches placeholders + missing dependencies. Do it. |
+| "I'll start executing while still writing the plan" | Writing + executing in parallel produces a plan that justifies the code. Finish, review, then execute. |
+
+**Any of these mean: stop, complete/review the plan before proceeding.**

@@ -33,11 +33,14 @@ export function parseFrontmatter(content: string): { name?: string; description?
  * a word boundary that is NOT a path continuation (not /, not word-char).
  */
 export function extractSlashCommands(content: string): string[] {
-	// (^|[\s`]) — preceded by start, whitespace, or backtick (NOT a path char)
-	// (/[a-z][\w-]*) — the command token
-	// (?=$|[\s`.,;:!?)"'\]\)]) — followed by end, whitespace, backtick, or sentence
-	//   punctuation (NOT /, NOT word-char — excludes /api/user, specs/buildplan.md, reviewer/planner)
-	const re = /(^|[\s`])(\/[a-z][\w-]*)(?=$|[\s`.,;:!?)"'\]\)])/gm;
+	// Match /foo preceded by start-of-string OR whitespace (a real command
+	// invocation, not a path separator or conjunction). Excludes:
+	//   - path separators: specs/buildplan.md, docs/security-audit.md
+	//   - URL paths: /api/user
+	//   - conjunctions: reviewer/planner, `sleep`/timeout
+	// A backtick-wrapped `` `/cmd` `` is NOT matched (rare in these skills; if it
+	// appears, the prose context makes the intent clear without validator help).
+	const re = /(^|[\s])(\/[a-z][\w-]*)(?=$|[\s`.,;:!?)"'\]\)])/gm;
 	const cmds: string[] = [];
 	let m: RegExpExecArray | null;
 	while ((m = re.exec(content)) !== null) {

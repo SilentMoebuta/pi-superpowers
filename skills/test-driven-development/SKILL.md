@@ -360,10 +360,18 @@ Never fix bugs without a test.
 
 ## Testing Anti-Patterns
 
-When adding mocks or test utilities, be aware of common pitfalls:
+When adding mocks or test utilities, be aware of the common pitfalls — each is a
+tell that TDD was skipped. The full list with fixes (tests-after-the-code,
+testing the mock, vague names, "and" in a test name, test-only methods in
+production, mocking a dependency you don't understand) lives in
+[testing-anti-patterns.md](testing-anti-patterns.md). Load it whenever you reach
+for a mock or feel the pull to add a method "just for the tests."
+
+Quick tells:
 - Testing mock behavior instead of real behavior
 - Adding test-only methods to production classes
 - Mocking without understanding dependencies
+- A test that passes the first time you run it (you never saw it fail)
 
 ## Handoff
 

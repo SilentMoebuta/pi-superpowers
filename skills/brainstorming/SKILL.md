@@ -141,8 +141,16 @@ After writing the spec document, look at it with fresh eyes before showing the u
 
 Fix any issues inline. No need to re-review — just fix and move on. The self-review should take 2-3 minutes, not 20.
 
+**Reviewer subagent (fresh-eyes pass):**
+Before the user review gate, dispatch a read-only `reviewer` subagent against the
+written spec — it catches the placeholders and contradictions your author-eyes
+skip because you wrote the words. Use the prompt in
+[spec-document-reviewer-prompt.md](spec-document-reviewer-prompt.md). Fix any
+"Issues Found" with `edit` and re-run your inline self-review; only re-dispatch
+for structural issues, not wording.
+
 **User Review Gate:**
-After the spec review loop passes, ask the user to review the written spec before proceeding:
+After the spec review loop (inline self-review + reviewer subagent) passes, ask the user to review the written spec before proceeding:
 
 > "Spec written and committed to `<path>`. Please review it and let me know if you want to make any changes before we start writing out the implementation plan."
 

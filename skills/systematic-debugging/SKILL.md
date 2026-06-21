@@ -276,11 +276,20 @@ If systematic investigation reveals issue is truly environmental, timing-depende
 
 ## Supporting Techniques
 
-These techniques are part of systematic debugging. When applicable, apply them within the four-phase framework:
+These techniques are part of systematic debugging. When a phase calls for them,
+load the dedicated file and apply it within the four-phase framework:
 
-- **Backward Tracing** — Trace bugs backward through the call stack to find the original trigger. Start at the error site, check the input that produced the error, move one level up and check what produced that input. Continue until you find where correct data turned into incorrect data. That boundary is your root cause.
-- **Defense in Depth** — After finding the root cause, add validation at multiple layers so similar failures are caught earlier and produce clearer diagnostics. Validate inputs at boundaries, assert invariants, and fail fast with descriptive messages.
-- **Condition-Based Waiting** — Replace arbitrary timeouts and sleeps with polling on actual conditions. Instead of `sleep(5)`, poll on the specific state change you need, with a reasonable timeout as a safety net. This eliminates race conditions and makes tests both faster and more reliable.
+- **[Root Cause Tracing](root-cause-tracing.md)** — walk the cause backward one
+  hop at a time (five-whys, hypothesis narrowing, bisect) until you find where
+  correct data turned into incorrect data. The load-bearing technique for
+  Phase 1 — never fix at the symptom.
+- **[Defense in Depth](defense-in-depth.md)** — after the root-cause fix, add
+  validation at every boundary data crosses (repro → isolate → fix → verify) so
+  the same failure can't recur. The Phase 4 hardening loop.
+- **[Condition-Based Waiting](condition-based-waiting.md)** — replace arbitrary
+  `sleep`/timeout guesses with polling on the actual condition (or an
+  event-based wait), with a bounded timeout as a safety net. Eliminates the
+  flaky-test class of timing bugs.
 
 **Related skills:**
 - `test-driven-development` — For creating failing test case (Phase 4, Step 1)

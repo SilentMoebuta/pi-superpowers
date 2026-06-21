@@ -42,9 +42,9 @@ describe("extractSlashCommands (real regex, not naive substring)", () => {
 		const cmds = extractSlashCommands("use reviewer/planner with monitoring/logging");
 		assert.deepEqual(cmds, []);
 	});
-	it("matches backtick-wrapped commands", () => {
-		const cmds = extractSlashCommands("run `/status` or `/goal`");
-		assert.deepEqual(cmds, ["/status", "/goal"]);
+	it("does NOT match backtick-wrapped conjunctions (`sleep`/timeout)", () => {
+		const cmds = extractSlashCommands("avoid `sleep`/timeout guesses");
+		assert.deepEqual(cmds, []);
 	});
 	it("matches at start of line", () => {
 		const cmds = extractSlashCommands("/commit\nnext line");
